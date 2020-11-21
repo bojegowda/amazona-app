@@ -2,14 +2,12 @@ import React, { useEffect } from "react";
 import Product from "../components/Product";
 import LoadingBox from "../components/LoadingBox";
 import MessageBox from "../components/MessageBox";
-import data from "../data";
 import { listProducts } from "../actions/productActions";
 import { useDispatch, useSelector } from "react-redux";
 
 export default function HomeScreen() {
   const dispatch = useDispatch();
   const productList = useSelector((state) => state.productList);
-  console.log(productList);
   const { loading, error, products } = productList;
 
   useEffect(() => {
@@ -26,7 +24,7 @@ export default function HomeScreen() {
       ) : (
         <div className="row center">
           {" "}
-          {data.products.map((product) => (
+          {products.map((product) => (
             <Product key={product._id} product={product}>
               {" "}
             </Product>
