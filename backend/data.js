@@ -73,4 +73,3 @@ exports.data = {
         },
     ],
 };
-// export default data;

@@ -1,30 +1,17 @@
 const express = require('express');
-const data = require('./data.js');
+const data = require('./data');
 
 const app = express()
 
-
-
-// mongoose.connect(process.env.MONGODB_URL || 'mongodb://localhost/amazona', {
-//     useNewUrlParser: true,
-//     useUnifiedTopology: true,
-//     useCreateIndex: true,
-// });
-
-app.use('/api/products', (req, res) => {
+app.get('/api/products', (req, res) => {
     res.send(data.products);
     console.log(data.products);
 });
 
 app.get('/', (req, res) => {
     res.send('Server is ready');
+    console.log("server is ready");
 });
-
-// app.use((err, req, res, next) => {
-//     res.status(500).send({
-//         message: err.message
-//     });
-// });
 
 const port = process.env.PORT || 5000;
 app.listen(port, () => {
