@@ -1,4 +1,17 @@
+const bcrypt = require('bcrypt')
+
 exports.data = {
+    users: [{
+        name: 'Boja',
+        email: 'admin@example.com',
+        password: bcrypt.hashSync('1234', 8),
+        isAdmin: true,
+    }, {
+        name: 'john',
+        email: 'user@example.com',
+        password: bcrypt.hashSync('1234', 8),
+        isAdmin: false,
+    }],
     products: [{
             _id: '1',
             name: 'Nike Slim Shirt',
