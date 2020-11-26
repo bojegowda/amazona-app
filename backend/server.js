@@ -4,7 +4,10 @@ const {
     data
 } = require('./data');
 const productRouter = require('./routes/productRouter');
-const userRouter = require('./routes/userRouter')
+const userRouter = require('./routes/userRouter');
+const dotenv = require('dotenv');
+
+dotenv.config();
 
 const app = express()
 mongoose.connect(process.env.MONGODB_URL || 'mongodb://localhost/amazona', {
@@ -18,6 +21,10 @@ app.use('/api/products', productRouter);
 app.get('/', (req, res) => {
     res.send('Server is ready');
 });
+app.use(express.json());
+app.use(express.urlencoded({
+    extended: true
+}));
 
 app.use((err, req, res, next) => {
     res.status(500).send({
