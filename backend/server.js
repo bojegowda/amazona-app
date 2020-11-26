@@ -15,16 +15,16 @@ mongoose.connect(process.env.MONGODB_URL || 'mongodb://localhost/amazona', {
     useUnifiedTopology: true,
     useCreateIndex: true,
 });
+app.use(express.json());
+app.use(express.urlencoded({
+    extended: true
+}));
 
 app.use('/api/users', userRouter);
 app.use('/api/products', productRouter);
 app.get('/', (req, res) => {
     res.send('Server is ready');
 });
-app.use(express.json());
-app.use(express.urlencoded({
-    extended: true
-}));
 
 app.use((err, req, res, next) => {
     res.status(500).send({
